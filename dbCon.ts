@@ -1,5 +1,4 @@
 import 'dotenv/config'
-
         export const config: Object = {
         user: process.env.USERNAME,
         password: process.env.PASSWORD,
