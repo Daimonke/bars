@@ -26,6 +26,16 @@ a {
   border-bottom-right-radius: 20px;
 } */
 
+.logo {
+  cursor: pointer;
+  width: 30%;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .header {
 	background: linear-gradient(-45deg, #2b2b2b, #484848, #a4a4a4, #151515);
 	background-size: 600% 300%;

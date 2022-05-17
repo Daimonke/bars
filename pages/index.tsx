@@ -1,10 +1,13 @@
-import { Card, Container, Rating, Typography } from '@mui/material'
+import { Button, Card, Container, Rating, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { getData } from './api/bars'
 import EuroIcon from '@mui/icons-material/Euro';
+import Link from 'next/link'
+import logo from '../public/logo.png'
+import Script from 'next/script'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getData()
@@ -23,14 +26,29 @@ interface itemTypes {
 const Home: NextPage = ( {data}: any ) => {
   return (
     <div>
+      <Script src="https://apis.google.com/js/platform.js" async defer></Script>
       <Head>
         <title>Create Next App</title>
         <meta name="description" content="Reviews for bars" />
         <link rel="icon" href="/favicon.ico" />
         <title>Bars</title>
+        <meta name="google-signin-client_id" content="926100731368-6ibmc74vtav4tpit6mib7hrjlkd0mqq4.apps.googleusercontent.com"></meta>
       </Head>
       <div className='header'>
-      <Typography variant='h1' fontWeight={500} sx={{textAlign: 'center', fontSize: {xs: 30, md: 50}}}>Most Popular Bars</Typography>
+        <Container sx={{display: 'flex', justifyContent: 'space-between'}}>
+        <Link href='/'>
+          <a className='logo'>
+          <Image src={logo} alt='logo' layout='responsive'></Image>
+          </a>
+        </Link>
+        <nav className='nav'>
+        <Button variant='contained' color='primary'>Login</Button>
+        <Button variant='contained' color='info'>Sign-up</Button>
+        <div className="g-signin2" data-onsuccess="onSignIn">Login</div>
+        </nav>
+        
+        </Container>
+        
       </div>
         <Container sx={{display: 'grid', gridTemplateColumns: {sm: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr'} , gap: 3, p: 3}}>
           {data.map((item: itemTypes) => {
