@@ -30,7 +30,7 @@ export default function Profile() {
                 size='medium'
                 variant='contained'
             >
-                Profile
+                Profilis
             </Button>
             <Menu
                 id="basic-menu"
@@ -48,13 +48,12 @@ export default function Profile() {
                             <Avatar alt={session.user.name} src={session.user.image} />
                             <Typography sx={{ ml: 1 }} variant='body1'>{session.user.email}</Typography>
                         </div>
-                        <Button startIcon={<GoogleIcon />} sx={{ padding: '5px 20px' }} fullWidth variant='text' onClick={() => signOut()}>Logout</Button>
+                        <Button startIcon={<GoogleIcon />} sx={{ padding: '5px 20px' }} fullWidth variant='text' onClick={() => signOut()}>Atsijungti</Button>
                     </div>
                     :
                     <div>
-                        <Button startIcon={<GoogleIcon />} sx={{ padding: '5px 20px' }} fullWidth variant='text' onClick={() => signIn('google')}>Login with Google</Button>
+                        <Button startIcon={<GoogleIcon />} sx={{ padding: '5px 20px' }} fullWidth variant='text' onClick={() => signIn('google')}>Prisijungti su Google</Button>
                     </div>
-
                 }
 
             </Menu>

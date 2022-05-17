@@ -1,4 +1,4 @@
-import { Avatar, Card, Container, Rating, Typography } from '@mui/material'
+import { Avatar, Button, Card, Container, Rating, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
@@ -9,6 +9,10 @@ import Link from 'next/link'
 import logo from '../public/logo.png'
 import { useSession } from "next-auth/react"
 import Profile from '../components/profile'
+import ReviewForm from '../components/reviewForm'
+import axios from 'axios'
+import URL from '../URL'
+import { useState } from 'react'
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -25,7 +29,11 @@ type itemTypes = {
 }
 
 const Home: NextPage = ({ data }: any) => {
-  const { data: session }: any = useSession()
+  const [bars, setBars] = useState(data)
+  const update = async () => {
+    const response = await axios.get(`${URL}/api/bars`)
+    setBars(response.data)
+  }
 
   return (
     <div>
@@ -52,7 +60,7 @@ const Home: NextPage = ({ data }: any) => {
 
       </div>
       <Container sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }, gap: 3, p: 3 }}>
-        {data.map((item: itemTypes) => {
+        {bars.map((item: itemTypes) => {
           return (
             <Card key={item.id}>
               <Image className='barImage' src={item.image} alt={item.name} width='100%' height='100%' layout='responsive'></Image>
@@ -61,9 +69,10 @@ const Home: NextPage = ({ data }: any) => {
                 <Typography variant='body1' fontSize={15} color='rgb(100, 100, 100)'>{item.address}</Typography>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '11px' }}>
-                <Rating name="read-only" value={item.rating} precision={0.1} readOnly />
-                <Rating sx={{ color: 'rgb(0, 182, 9)' }} icon={<EuroIcon fontSize='small' />} emptyIcon={<EuroIcon fontSize='small' />} name="read-only" value={item.price} precision={0.1} readOnly />
+                <Rating name="read-only" value={item.rating? item.rating : 0} precision={0.1} readOnly />
+                <Rating sx={{ color: 'rgb(0, 182, 9)' }} icon={<EuroIcon fontSize='small' />} emptyIcon={<EuroIcon fontSize='small' />} name="read-only" value={item.price? item.price : 0} precision={0.1} readOnly />
               </div>
+              <ReviewForm item={item} update={update} />
             </Card>
           )
         })}
