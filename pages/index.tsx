@@ -1,4 +1,4 @@
-import { Button, Card, Container, Rating, Typography } from '@mui/material'
+import { Avatar, Button, Card, Container, Rating, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
@@ -9,14 +9,15 @@ import Link from 'next/link'
 import logo from '../public/logo.png'
 import Script from 'next/script'
 import { useSession, signIn, signOut } from "next-auth/react"
+import GoogleIcon from '@mui/icons-material/Google';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getData()
   return { props: { data } }
 }
-
-interface itemTypes {
+type itemTypes = {
   id: number,
   name: string,
   address: string,
@@ -27,14 +28,7 @@ interface itemTypes {
 
 const Home: NextPage = ({ data }: any) => {
   const { data: session }: any = useSession()
-  // if (session) {
-  //   return (
-  //     <>
-  //       Signed in as {session.user.email} <br />
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </>
-  //   )
-  // }
+
   return (
     <div>
       <Script src="https://apis.google.com/js/platform.js" async></Script>
@@ -55,10 +49,14 @@ const Home: NextPage = ({ data }: any) => {
           </Link>
           <nav className='nav'>
             {session ? <>
-              Signed in as {session.user.email} <br />
-              <button onClick={() => signOut()}>Sign out</button>
+            <div style={{display: 'flex', alignItems: 'center', marginBottom: '5px'}}>
+            <Avatar alt={session.user.name} src={session.user.image} />
+              <Typography sx={{ml: 1}} variant='body1'>{session.user.email}</Typography>
+            </div>
+              
+              <Button sx={{ml: 3}} startIcon={<GoogleIcon />} variant='contained' onClick={() => signOut()}>Logout</Button>
             </> :
-               <button onClick={() => signIn()}>Sign in</button>
+               <Button startIcon={<GoogleIcon />} variant='contained' onClick={() => signIn('google')}>Login with Google</Button>
             }
           </nav>
 
