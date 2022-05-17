@@ -66,7 +66,6 @@ const Home: NextPage = ({ data }: any) => {
           )
         })}
       </Container>
-      <Script src="https://apis.google.com/js/platform.js" async defer></Script>
     </div>
   )
 }
