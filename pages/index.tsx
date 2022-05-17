@@ -38,7 +38,7 @@ const Home: NextPage = ({ data }: any) => {
         <meta name="google-site-verification" content="guzVbsE_J17g5UK-EW12RSXE8lc_gATQmvSo4jd_gqo" />
       </Head>
       <div className='header'>
-        <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Link href='/'>
             <a className='logo'>
               <Image src={logo} alt='logo' layout='responsive'></Image>
