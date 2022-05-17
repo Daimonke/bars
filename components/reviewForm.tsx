@@ -90,7 +90,7 @@ export default function ReviewForm({ item, update }: any) {
             />
           </div>
           <div style={{}}>
-            <Typography component="legend">Kokybė</Typography>
+            <Typography component="legend">Kaina</Typography>
             <Rating
               icon={<EuroIcon fontSize='medium' />} emptyIcon={<EuroIcon fontSize='medium' />}
               sx={{ color: 'rgb(0, 182, 9)' }}
