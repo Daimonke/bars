@@ -9,6 +9,7 @@ import Link from 'next/link'
 import logo from '../public/logo.png'
 import { useSession, signIn, signOut } from "next-auth/react"
 import GoogleIcon from '@mui/icons-material/Google';
+import Profile from '../components/profile'
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -45,16 +46,7 @@ const Home: NextPage = ({ data }: any) => {
             </a>
           </Link>
           <nav className='nav'>
-            {session ? <>
-            <div style={{display: 'flex', alignItems: 'center', marginBottom: '5px'}}>
-            <Avatar alt={session.user.name} src={session.user.image} />
-              <Typography sx={{ml: 1}} variant='body1'>{session.user.email}</Typography>
-            </div>
-              
-              <Button sx={{ml: 3}} startIcon={<GoogleIcon />} variant='contained' onClick={() => signOut()}>Logout</Button>
-            </> :
-               <Button startIcon={<GoogleIcon />} variant='contained' onClick={() => signIn('google')}>Login with Google</Button>
-            }
+            <Profile />
           </nav>
 
         </Container>
