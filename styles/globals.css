@@ -31,10 +31,8 @@ a {
 	background-size: 600% 300%;
 	animation: gradient 5s linear infinite;
   padding: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   color: rgb(230, 230, 230);
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
 }
 
 @keyframes gradient {
@@ -45,7 +43,7 @@ a {
 		background-position: 50% 50%;
 	}
 	100% {
-		background-position: 100% 50%;
+		background-position: 0% 50%;
 	}
 }
 

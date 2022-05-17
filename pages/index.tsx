@@ -5,7 +5,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { getData } from './api/bars'
 import EuroIcon from '@mui/icons-material/Euro';
-import { styled } from '@mui/material/styles';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getData()
@@ -31,7 +30,7 @@ const Home: NextPage = ( {data}: any ) => {
         <title>Bars</title>
       </Head>
       <div className='header'>
-      <Typography variant='h1' fontWeight={500} sx={{textAlign: 'center', fontSize: {xs: 40, md: 70}}}>Most Popular Bars</Typography>
+      <Typography variant='h1' fontWeight={500} sx={{textAlign: 'center', fontSize: {xs: 30, md: 50}}}>Most Popular Bars</Typography>
       </div>
         <Container sx={{display: 'grid', gridTemplateColumns: {sm: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr'} , gap: 3, p: 3}}>
           {data.map((item: itemTypes) => {
