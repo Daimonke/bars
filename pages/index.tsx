@@ -7,10 +7,8 @@ import { getData } from './api/bars'
 import EuroIcon from '@mui/icons-material/Euro';
 import Link from 'next/link'
 import logo from '../public/logo.png'
-import Script from 'next/script'
 import { useSession, signIn, signOut } from "next-auth/react"
 import GoogleIcon from '@mui/icons-material/Google';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -31,13 +29,11 @@ const Home: NextPage = ({ data }: any) => {
 
   return (
     <div>
-      <Script src="https://apis.google.com/js/platform.js" async></Script>
       <Head>
         <title>Create Next App</title>
         <meta name="description" content="Reviews for bars" />
         <link rel="icon" href="/favicon.ico" />
         <title>Bars</title>
-        <meta name="google-signin-client_id" content="926100731368-6ibmc74vtav4tpit6mib7hrjlkd0mqq4.apps.googleusercontent.com" />
         <meta name="google-site-verification" content="guzVbsE_J17g5UK-EW12RSXE8lc_gATQmvSo4jd_gqo" />
       </Head>
       <div className='header'>
