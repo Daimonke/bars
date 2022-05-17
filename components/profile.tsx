@@ -30,7 +30,7 @@ export default function Profile() {
                 size='medium'
                 variant='contained'
             >
-                Profilis
+                {session? 'Profilis' : 'Prisijungti'}
             </Button>
             <Menu
                 id="basic-menu"
