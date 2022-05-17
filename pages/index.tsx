@@ -26,7 +26,7 @@ interface itemTypes {
 const Home: NextPage = ( {data}: any ) => {
   return (
     <div>
-      <Script src="https://apis.google.com/js/platform.js" async defer></Script>
+      {/* <Script src="https://apis.google.com/js/platform.js" async defer></Script> */}
       <Head>
         <title>Create Next App</title>
         <meta name="description" content="Reviews for bars" />
@@ -44,7 +44,7 @@ const Home: NextPage = ( {data}: any ) => {
         <nav className='nav'>
         <Button variant='contained' color='primary'>Login</Button>
         <Button variant='contained' color='info'>Sign-up</Button>
-        <div className="g-signin2" data-onsuccess="onSignIn">Login</div>
+        <div style={{display: 'flex', alignItems: 'center'}} className="g-signin2" data-onsuccess="onSignIn" data-longTitle={true}>Login</div>
         </nav>
         
         </Container>
