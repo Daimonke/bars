@@ -8,6 +8,8 @@ import EuroIcon from '@mui/icons-material/Euro';
 import Link from 'next/link'
 import logo from '../public/logo.png'
 import Script from 'next/script'
+import { useSession, signIn, signOut } from "next-auth/react"
+
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getData()
@@ -24,8 +26,18 @@ interface itemTypes {
 }
 
 const Home: NextPage = ({ data }: any) => {
+  const { data: session }: any = useSession()
+  // if (session) {
+  //   return (
+  //     <>
+  //       Signed in as {session.user.email} <br />
+  //       <button onClick={() => signOut()}>Sign out</button>
+  //     </>
+  //   )
+  // }
   return (
     <div>
+      <Script src="https://apis.google.com/js/platform.js" async></Script>
       <Head>
         <title>Create Next App</title>
         <meta name="description" content="Reviews for bars" />
@@ -42,9 +54,12 @@ const Home: NextPage = ({ data }: any) => {
             </a>
           </Link>
           <nav className='nav'>
-            <Button variant='contained' color='primary'>Login</Button>
-            <Button variant='contained' color='info'>Sign-up</Button>
-            <div style={{ display: 'flex', alignItems: 'center' }} className="g-signin2" data-onsuccess="onSignIn" data-longtitle={true}>Login</div>
+            {session ? <>
+              Signed in as {session.user.email} <br />
+              <button onClick={() => signOut()}>Sign out</button>
+            </> :
+              <div style={{ display: 'flex', alignItems: 'center' }} className="g-signin2" data-onsuccess="onSignIn" data-longtitle={true}></div>
+            }
           </nav>
 
         </Container>
@@ -67,7 +82,6 @@ const Home: NextPage = ({ data }: any) => {
           )
         })}
       </Container>
-      <Script src="https://apis.google.com/js/platform.js" async defer></Script>
     </div>
   )
 }
