@@ -32,6 +32,7 @@ const Home: NextPage = ({ data }: any) => {
         <link rel="icon" href="/favicon.ico" />
         <title>Bars</title>
         <meta name="google-signin-client_id" content="926100731368-6ibmc74vtav4tpit6mib7hrjlkd0mqq4.apps.googleusercontent.com" />
+        <meta name="google-site-verification" content="guzVbsE_J17g5UK-EW12RSXE8lc_gATQmvSo4jd_gqo" />
       </Head>
       <div className='header'>
         <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
