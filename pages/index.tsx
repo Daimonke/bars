@@ -31,7 +31,7 @@ const Home: NextPage = ({ data }: any) => {
         <meta name="description" content="Reviews for bars" />
         <link rel="icon" href="/favicon.ico" />
         <title>Bars</title>
-        <meta name="google-signin-client_id" content="926100731368-6ibmc74vtav4tpit6mib7hrjlkd0mqq4.apps.googleusercontent.com"></meta>
+        <meta name="google-signin-client_id" content="926100731368-6ibmc74vtav4tpit6mib7hrjlkd0mqq4.apps.googleusercontent.com" />
       </Head>
       <div className='header'>
         <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -66,7 +66,7 @@ const Home: NextPage = ({ data }: any) => {
           )
         })}
       </Container>
-      <Script src="https://apis.google.com/js/platform.js" onLoad={() => console.log('google')}></Script>
+      <Script src="https://apis.google.com/js/platform.js" async defer></Script>
     </div>
   )
 }
