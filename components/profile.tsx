@@ -21,13 +21,13 @@ export default function Profile() {
     return (
         <div>
             <Button
-                startIcon={<AccountBoxIcon fontSize='large'/>}
+                startIcon={session ? <Avatar src={session.user.image} /> : <AccountBoxIcon fontSize='large' />}
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
-                size='large'
+                size='medium'
                 variant='contained'
             >
                 Profile
@@ -40,23 +40,23 @@ export default function Profile() {
                 MenuListProps={{
                     'aria-labelledby': 'basic-button',
                 }}
-                sx={{mt: 1}}
+                sx={{ mt: 1 }}
             >
-                {session?
-                <>
-                 <div style={{display: 'flex', alignItems: 'center', padding: '5px 10px'}}>
-                 <Avatar alt={session.user.name} src={session.user.image} />
-                   <Typography sx={{ml: 1}} variant='body1'>{session.user.email}</Typography>
-                 </div>
-                 <Button startIcon={<GoogleIcon />} sx={{padding: '5px 20px'}} fullWidth variant='text' onClick={() => signOut()}>Logout</Button>
-            </>
-            :
-            <>
-            <Button startIcon={<GoogleIcon />} sx={{padding: '5px 20px'}} fullWidth variant='text' onClick={() => signIn('google')}>Login with Google</Button>
-            </>
-           
-            }
-                
+                {session ?
+                    <div>
+                        <div style={{ display: 'flex', alignItems: 'center', padding: '5px 10px' }}>
+                            <Avatar alt={session.user.name} src={session.user.image} />
+                            <Typography sx={{ ml: 1 }} variant='body1'>{session.user.email}</Typography>
+                        </div>
+                        <Button startIcon={<GoogleIcon />} sx={{ padding: '5px 20px' }} fullWidth variant='text' onClick={() => signOut()}>Logout</Button>
+                    </div>
+                    :
+                    <div>
+                        <Button startIcon={<GoogleIcon />} sx={{ padding: '5px 20px' }} fullWidth variant='text' onClick={() => signIn('google')}>Login with Google</Button>
+                    </div>
+
+                }
+
             </Menu>
         </div>
     );

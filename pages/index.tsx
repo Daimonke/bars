@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, Container, Rating, Typography } from '@mui/material'
+import { Avatar, Card, Container, Rating, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
@@ -7,8 +7,7 @@ import { getData } from './api/bars'
 import EuroIcon from '@mui/icons-material/Euro';
 import Link from 'next/link'
 import logo from '../public/logo.png'
-import { useSession, signIn, signOut } from "next-auth/react"
-import GoogleIcon from '@mui/icons-material/Google';
+import { useSession } from "next-auth/react"
 import Profile from '../components/profile'
 
 
