@@ -58,7 +58,7 @@ const Home: NextPage = ({ data }: any) => {
               Signed in as {session.user.email} <br />
               <button onClick={() => signOut()}>Sign out</button>
             </> :
-              <div style={{ display: 'flex', alignItems: 'center' }} className="g-signin2" data-onsuccess="onSignIn" data-longtitle={true}></div>
+               <button onClick={() => signIn()}>Sign in</button>
             }
           </nav>
 
