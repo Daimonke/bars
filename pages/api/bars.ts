@@ -6,7 +6,7 @@ import connect from '../../dbCon'
 export async function getData(){
   const con = await connect()
   const [data] : Array<object> = await con.query('SELECT * FROM barai')
-  con.end()
+  await con.end()
   return data
 }
 
