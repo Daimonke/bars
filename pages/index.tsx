@@ -15,7 +15,7 @@ import { useState } from 'react'
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getData()
+  let data = await getData()
   return { props: { data } }
 }
 type itemTypes = {
@@ -25,7 +25,7 @@ type itemTypes = {
   rating: number,
   price: number,
   image: string
-}
+};
 
 const Home: NextPage = ({ data }: any) => {
   const [bars, setBars] = useState(data)
@@ -58,7 +58,7 @@ const Home: NextPage = ({ data }: any) => {
         </Container>
       </div>
       <Container sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }, gap: 3, p: 3 }}>
-        {bars.map((item: itemTypes) => {
+        {bars?.map((item: itemTypes) => {
           return (
             <Card key={item.id}>
               <Image className='barImage' src={item.image} alt={item.name} width='100%' height='100%' layout='responsive'></Image>
@@ -67,8 +67,8 @@ const Home: NextPage = ({ data }: any) => {
                 <Typography variant='body1' fontSize={15} color='rgb(100, 100, 100)'>{item.address}</Typography>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '11px' }}>
-                <Rating name="read-only" value={item.rating? item.rating : 0} precision={0.1} readOnly />
-                <Rating sx={{ color: 'rgb(0, 182, 9)' }} icon={<EuroIcon fontSize='small' />} emptyIcon={<EuroIcon fontSize='small' />} name="read-only" value={item.price? item.price : 0} precision={0.1} readOnly />
+                <Rating name="read-only" value={item.rating ? item.rating : 0} precision={0.1} readOnly />
+                <Rating sx={{ color: 'rgb(0, 182, 9)' }} icon={<EuroIcon fontSize='small' />} emptyIcon={<EuroIcon fontSize='small' />} name="read-only" value={item.price ? item.price : 0} precision={0.1} readOnly />
               </div>
               <ReviewForm item={item} update={update} />
             </Card>

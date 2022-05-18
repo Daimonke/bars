@@ -6,7 +6,7 @@ import 'dotenv/config'
 
 export async function getData() {
   const con = await mysql.createConnection(config)
-  const [data]: Array<object> = await con.query(`
+  const [data] = await con.query(`
   SELECT ROUND(AVG(ivertinimai.user_rating) , 1) as rating, ROUND(AVG(ivertinimai.user_price), 1) as price, barai.* FROM barai
   LEFT JOIN ivertinimai on barai.id=ivertinimai.bar_id
   GROUP BY barai.id`
@@ -29,7 +29,7 @@ export default async function handler(
       await con.end()
       return res.status(200).json({err: 'Prisijunkite, kad galėtumėte vertinti.'})
     }
-    const [check]: any = await con.query('SELECT COUNT(id) as count FROM ivertinimai WHERE user_email = ? AND bar_id=?', [b.user.email, b.bar_id])
+    const [check]:any = await con.query('SELECT COUNT(id) as count FROM ivertinimai WHERE user_email = ? AND bar_id=?', [b.user.email, b.bar_id])
     if (check[0].count === 0){
       await con.query('INSERT INTO ivertinimai (bar_id, user_email, user_rating, user_price) VALUES(?,?,?,?)', [b.bar_id, b.user.email, b.rating, b.price])
       await con.end()
