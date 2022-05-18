@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, Container, Rating, Typography } from '@mui/material'
+import { Card, Container, Rating, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
@@ -7,7 +7,6 @@ import { getData } from './api/bars'
 import EuroIcon from '@mui/icons-material/Euro';
 import Link from 'next/link'
 import logo from '../public/logo.png'
-import { useSession } from "next-auth/react"
 import Profile from '../components/profile'
 import ReviewForm from '../components/reviewForm'
 import axios from 'axios'
@@ -56,9 +55,7 @@ const Home: NextPage = ({ data }: any) => {
           <nav className='nav'>
             <Profile />
           </nav>
-
         </Container>
-
       </div>
       <Container sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }, gap: 3, p: 3 }}>
         {bars.map((item: itemTypes) => {

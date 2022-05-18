@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,15 +9,13 @@ import EuroIcon from '@mui/icons-material/Euro';
 import URL from '../URL'
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
-import { getServerSideProps } from '../pages';
-import Router from 'next/router';
 
 export default function ReviewForm({ item, update }: any) {
   const { data: session }: any = useSession()
   const [open, setOpen] = useState(false);
   const [stars, setStars] = useState<number | null>(2)
   const [euros, setEuros] = useState<number | null>(2)
-  const [alert, setAlert] = useState<{active: boolean, type: AlertColor, msg: string}>({
+  const [alert, setAlert] = useState<{ active: boolean, type: AlertColor, msg: string }>({
     active: false,
     type: 'success',
     msg: ''
@@ -26,15 +23,19 @@ export default function ReviewForm({ item, update }: any) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log(item)
   };
 
   const handleClose = () => {
     setOpen(false);
+    setAlert({
+      active: false,
+      type: 'success',
+      msg: ''
+    })
   };
 
   const handleSubmit = () => {
-    if(!session) {
+    if (!session) {
       return setAlert({
         active: true,
         type: 'error',
@@ -50,24 +51,23 @@ export default function ReviewForm({ item, update }: any) {
       .then((res) => {
         console.log(res.data)
         if (res.data.err) {
-          console.log('NOTOK')
           setAlert({
             active: true,
             type: 'error',
             msg: res.data.err
-          })}
-          if (res.data.msg) {
-            console.log('OK')
-            setAlert({
-              active: true,
-              type: 'success',
-              msg: res.data.msg
-            })
-            update()
-            setTimeout(() => {
-              handleClose()
-            }, 1000)
-          }
+          })
+        }
+        if (res.data.msg) {
+          setAlert({
+            active: true,
+            type: 'success',
+            msg: res.data.msg
+          })
+          update()
+          setTimeout(() => {
+            handleClose()
+          }, 1000)
+        }
       })
   }
 
@@ -110,17 +110,13 @@ export default function ReviewForm({ item, update }: any) {
         </DialogActions>
         <DialogActions>
           {alert.active ?
-            <Alert sx={{width: '100%'}} severity={alert.type} onClose={() => setAlert({active: false, msg: '', type: 'success'})}>{alert.msg}</Alert>
+            <Alert sx={{ width: '100%' }} severity={alert.type} onClose={() => setAlert({ active: false, msg: '', type: 'success' })}>{alert.msg}</Alert>
             :
             null
           }
-
         </DialogActions>
       </Dialog>
     </div>
   );
 }
 
-function context(context: any) {
-  throw new Error('Function not implemented.');
-}
