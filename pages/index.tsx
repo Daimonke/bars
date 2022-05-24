@@ -27,8 +27,12 @@ type itemTypes = {
   image: string
 };
 
-const Home: NextPage = ({ data }: any) => {
-  const [bars, setBars] = useState(data)
+interface dataProps {
+  data: itemTypes[]
+}
+
+const Home: NextPage<dataProps> = ({ data }) => {
+  const [bars, setBars] = useState<itemTypes[]>(data)
   const update = async () => {
     const response = await axios.get(`${URL}/api/bars`)
     setBars(response.data)
