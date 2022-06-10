@@ -81,7 +81,7 @@ export default function ReviewForm({ item, update }: any) {
           <div>
             <Typography component="legend">Kokybė</Typography>
             <Rating
-              precision={0.1}
+              precision={0.2}
               name="simple-controlled"
               value={stars}
               onChange={(event, newValue) => {
@@ -94,7 +94,7 @@ export default function ReviewForm({ item, update }: any) {
             <Rating
               icon={<EuroIcon fontSize='medium' />} emptyIcon={<EuroIcon fontSize='medium' />}
               sx={{ color: 'rgb(0, 182, 9)' }}
-              precision={0.1}
+              precision={0.2}
               name="simple-controlled"
               value={euros}
               onChange={(event, newValue) => {
